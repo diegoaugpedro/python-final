@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<title>Fluxo de caixa</title>
+</head>
+<body>
+
+    <div class="container">
+
+        <div>
+            {% for mes in meses %}
+                <h1>{{mes.data}}</h1>
+                <h4>Saldo Inicial: {{mes.saldo_inicial}} R$</h4>      
+                
+                {% for gasto in mes.pagar.gastosClassificacao %}
+                <div class="row">
+                    <div class="col-6">
+                        <p>Despesa: {{gasto.classificacao}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{gasto.soma}} R$</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total despesas previstas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.pagar.somaPrevisto}} R$</p>
+                    </div>
+                </div>
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total despesas pagas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.pagar.somaRealizado}} R$</p>
+                    </div>
+                </div>
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total despesas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.pagar.somaMensal}} R$</p>
+                    </div>
+                </div>
+
+                <br><br>
+
+                {% for ganho in mes.receber.ganhosClassificacao %}
+                <div class="row">
+                    <div class="col-6">
+                        <p>Receita: {{ganho.classificacao}}</p>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ganho.soma}} R$</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total receitas previstas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.receber.somaPrevisto}} R$</p>
+                    </div>
+                </div>
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total receitas recebidas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.receber.somaRecebido}} R$</p>
+                    </div>
+                </div>
+
+                <div class="row totais">
+                    <div class="col-6">
+                        <p class="total">Total receitas</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="total">{{mes.receber.somaMensal}} R$</p>
+                    </div>
+                </div>
+
+                <h4>Saldo Final: {{mes.saldo_final}} R$</h4>
+                <h4>Lucratividade: {{mes.lucro}} R$</h4>
+
+            {% endfor %}
+
+    
+
+        </div>
+
+
+    </div>
+
+	<style>
+
+        h1 {
+            font-size: 40px;
+            margin-top: 80px;
+            margin-bottom: 40px;
+            padding: 10px;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
+
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            background-color: gray;
+            color: white;
+            font-size: 24px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .row {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid black;
+        }
+
+        .totais {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            background-color: lightslategray;
+        }
+
+        .total {
+            font-weight: 600;
+            color: white;
+        }
+
+	</style>
+
+
+    <!--Bootstrap-->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
